@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-component
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: bgapp
+      role: web
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: bgapp
+        role: web
+    spec:
+      containers:
+      - name: prod-container
+        image: web-component
+        volumeMounts:
+        - mountPath: /etc/apache2
+          name: content
+        ports:
+        - containerPort: 80
+      volumes:
+      - name: content
+        hostPath:
+          path: /home/vagrant/testapp/demobgapp/web
+          type: Directory
