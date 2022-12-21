@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
     node3.vm.synced_folder "shared/", "/shared"
     node3.vm.provision "shell", path: "initial-config/add-hosts.sh"
     node3.vm.provision "shell", path: "initial-config/worker-setup.sh"
-    node3.vm.provision "shell", path: "additional-config/dashboard-run.sh"
-    node3.vm.provision "shell", path: "additional-config/consumer-producer-deploy.sh"
+#    node3.vm.provision "shell", path: "additional-config/dashboard-run.sh"
+#    node3.vm.provision "shell", path: "additional-config/consumer-producer-deploy.sh"
   end
 end
