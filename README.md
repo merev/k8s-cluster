@@ -20,7 +20,7 @@ The operating system installed on the nodes is Debian 11. Each node has 2 GB RAM
  - 1 NIC in NAT Mode - connected to the host machine;
  - 1 NIC in Bridge Mode - connected to the local network.
 
-#### Warning: The second NIC (Bridge mode) of the nodes has a static IP address that belongs to my local network. Don't forget to replace the IPs of these interfaces with the ones that belong to your network.
+#### Warning: The second NIC (Bridge mode) of the nodes has a static IP address that belongs to my local network. Don't forget to replace the IPs of these interfaces with the ones that belong to your network (in the initial configuration scripts and Vagrantfile).
 Information about the installed software can be found in the box specification.
 
 ### Initial Configuration
