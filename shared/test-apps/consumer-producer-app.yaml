@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels: 
+      app: fun-facts
+      role: producer
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: fun-facts
+        role: producer
+    spec:
+      containers:
+      - name: prod-container
+        image: shekeriev/k8s-producer:latest
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: producer
+  labels:
+    app: fun-facts
+    role: producer
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5000
+    protocol: TCP
+  selector:
+    app: fun-facts
+    role: producer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer-deploy
+spec:
+  replicas: 2
+  selector:
+    matchLabels: 
+      app: fun-facts
+      role: consumer
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: fun-facts
+        role: consumer
+    spec:
+      containers:
+      - name: cons-container
+        image: shekeriev/k8s-consumer:latest
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: consumer
+  labels:
+    app: fun-facts
+    role: consumer
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    nodePort: 30001
+    protocol: TCP
+  selector:
+    app: fun-facts
+    role: consumer
