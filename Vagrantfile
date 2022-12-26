@@ -11,8 +11,8 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "node1" do |node1|
-    node1.vm.box = "merev/debian-k8s-node"
-    #node1.vm.box_version = "1.1"
+    node1.vm.box = "merev/k8s-node"
+    node1.vm.box_version = "1.26.0"
     node1.vm.hostname = "node1.k8s"
     node1.vm.network "public_network", ip: "192.168.1.131"
     node1.vm.synced_folder "shared/", "/shared"
@@ -21,8 +21,8 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "node2" do |node2|
-    node2.vm.box = "merev/debian-k8s-node"
-    #node2.vm.box_version = "1.1"
+    node2.vm.box = "merev/k8s-node"
+    node2.vm.box_version = "1.26.0"
     node2.vm.hostname = "node2.k8s"
     node2.vm.network "public_network", ip: "192.168.1.132"
     node2.vm.synced_folder "shared/", "/shared"
@@ -31,8 +31,8 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "node3" do |node3|
-    node3.vm.box = "merev/debian-k8s-node"
-    #node3.vm.box_version = "1.1"
+    node3.vm.box = "merev/k8s-node"
+    node3.vm.box_version = "1.26.0"
     node3.vm.hostname = "node3.k8s"
     node3.vm.network "public_network", ip: "192.168.1.133"
     node3.vm.synced_folder "shared/", "/shared"
