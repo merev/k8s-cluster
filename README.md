@@ -1,4 +1,6 @@
-# Kubernetes Cluster v1.25.x
+# Kubernetes Cluster
+You can install a different version of Kubernetes by changing the `box_version` settings in the Vagrantfile. The available box versions can be found here:
+https://app.vagrantup.com/merev/boxes/k8s-node
 #### Requirements:
 
  - VirtualBox 6.1+:  https://www.virtualbox.org/wiki/Downloads 
@@ -14,14 +16,14 @@ This is an automated solution for K8S cluster (v1.25.x) created through `kubeadm
 The architecture of the cluster looks like:
 ![general setup](cluster-architecture.png)
 
-Every node in the cluster is based on the same Vagrant box (*merev/debian-k8s-node*). You can find detailed information about the box here - https://app.vagrantup.com/merev/boxes/k8s-node.
+Every node in the cluster is based on the same Vagrant box (*merev/k8s-node*). You can find detailed information about the box here - https://app.vagrantup.com/merev/boxes/k8s-node.
 ### Nodes Specification
 The operating system installed on the nodes is Debian 11. Each node has 2 GB RAM, 2 CPUs, and 60 GB disk space. The hardware parameters can be adjusted before provisioning in the `config.vm.provider` block of the Vagrantfile. Every node has 2 network interfaces:
  - 1 NIC in NAT Mode - connected to the host machine;
  - 1 NIC in Bridge Mode - connected to the local network.
 
 #### Warning: The second NIC (Bridge mode) of the nodes has a static IP address that belongs to my local network. Don't forget to replace the IPs of these interfaces with the ones that belong to your network (in the initial configuration scripts and Vagrantfile).
-Information about the installed software can be found in the box specification.
+Information about the installed software can be found in the box specification as well as in the node-preparation script.
 
 ### Initial Configuration
 The initial configuration of the cluster contains the following actions:
