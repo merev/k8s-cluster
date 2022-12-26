@@ -14,7 +14,7 @@ This is an automated solution for K8S cluster (v1.25.x) created through `kubeadm
 The architecture of the cluster looks like:
 ![general setup](cluster-architecture.png)
 
-Every node in the cluster is based on the same Vagrant box (*merev/debian-k8s-node*). You can find detailed information about the box here - https://app.vagrantup.com/merev/boxes/debian-k8s-node.
+Every node in the cluster is based on the same Vagrant box (*merev/debian-k8s-node*). You can find detailed information about the box here - https://app.vagrantup.com/merev/boxes/k8s-node.
 ### Nodes Specification
 The operating system installed on the nodes is Debian 11. Each node has 2 GB RAM, 2 CPUs, and 60 GB disk space. The hardware parameters can be adjusted before provisioning in the `config.vm.provider` block of the Vagrantfile. Every node has 2 network interfaces:
  - 1 NIC in NAT Mode - connected to the host machine;
