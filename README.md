@@ -1,16 +1,16 @@
 # Kubernetes Cluster
+This is an automated solution for K8S cluster created through `kubeadm` and Vagrant. Follow the steps below:
+ - clone the repository; 
+ - open the directory in terminal;
+ - execute the command `vagrant up`;
+ - wait until the cluster is ready (up to 10 mins).
+
 You can install a different version of Kubernetes by changing the `box_version` settings in the Vagrantfile. The available box versions can be found here:
 https://app.vagrantup.com/merev/boxes/k8s-node
 #### Requirements:
 
  - VirtualBox 6.1+:  https://www.virtualbox.org/wiki/Downloads 
  - Vagrant 2.1+:  https://developer.hashicorp.com/vagrant/downloads
-
-This is an automated solution for K8S cluster (v1.25.x) created through `kubeadm` and Vagrant. Follow the steps below:
- - clone the repository; 
- - open the directory in terminal;
- - execute the command `vagrant up`;
- - wait until the cluster is ready (up to 10 mins).
 
 ## Cluster Details
 The architecture of the cluster looks like:
