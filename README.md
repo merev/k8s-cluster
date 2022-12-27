@@ -39,4 +39,4 @@ The additional configuration contains (not applied by default):
  - Running the K8s Dashboard;
  - Deploying 2-coponents test application (consumer-producer app).
 
-You can have the additional configuration applied by uncommenting rows 54 and 55 in the Vagrantfile.
+You can have the additional configuration applied by uncommenting rows 41 and 42 in the Vagrantfile.
