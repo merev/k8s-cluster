@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "* Cluster Initialization ..."
-kubeadm init --apiserver-advertise-address=192.168.1.131 --pod-network-cidr 10.244.0.0/16 --token abcdef.0123456789abcdef
+kubeadm init --apiserver-advertise-address=192.168.1.131 --pod-network-cidr=10.244.0.0/16 --token abcdef.0123456789abcdef
 
 echo "* Save the hash to a file ..."
 openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //' > /shared/.data/hash.txt
@@ -17,7 +17,7 @@ cp -i /etc/kubernetes/admin.conf /home/vagrant/.kube/config
 chown -R vagrant:vagrant /home/vagrant/.kube
 
 echo "* Save the admin config in a file ..."
-cp -i /etc/kubernetes/admin.conf /shared/.data/admin-config
+cp -i /etc/kubernetes/admin.conf /shared/.data/admin-config.yaml
 
 # Pod Network plugin - comment/uncomment one of the following blocks
 # Currently set to Calico
@@ -30,7 +30,7 @@ cp -i /etc/kubernetes/admin.conf /shared/.data/admin-config
 # kubectl apply -f /tmp/kube-flannel.yaml
 
 echo "* Install Pod Network plugin (Calico) ..."
-kubectl create -f https://docs.projectcalico.org/manifests/tigera-operator.yaml
-wget -q https://docs.projectcalico.org/manifests/custom-resources.yaml -O /tmp/custom-resources.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.1/manifests/tigera-operator.yaml
+wget -q https://raw.githubusercontent.com/projectcalico/calico/v3.25.1/manifests/custom-resources.yaml -O /tmp/custom-resources.yaml
 sed -i 's/192.168.0.0/10.244.0.0/g' /tmp/custom-resources.yaml
 kubectl create -f /tmp/custom-resources.yaml
