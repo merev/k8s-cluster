@@ -4,6 +4,7 @@
 Vagrant.configure(2) do |config|
     
   config.ssh.insert_key = false
+  config.vm.box_download_insecure = true
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048
