@@ -11,30 +11,30 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "node1" do |node1|
-    node1.vm.box = "merev/k8s-node"
-    node1.vm.box_version = "1.26.0"
+    node1.vm.box = "kubernetes-templates/k8s-node"
+    node1.vm.box_version = "1.25.5"
     node1.vm.hostname = "node1.k8s"
-    node1.vm.network "public_network", ip: "192.168.1.131"
+    node1.vm.network "public_network", ip: "192.168.50.131"
     node1.vm.synced_folder "shared/", "/shared"
     node1.vm.provision "shell", path: "initial-config/add-hosts.sh"
     node1.vm.provision "shell", path: "initial-config/control-plane-setup.sh"
   end
 
   config.vm.define "node2" do |node2|
-    node2.vm.box = "merev/k8s-node"
-    node2.vm.box_version = "1.26.0"
+    node2.vm.box = "kubernetes-templates/k8s-node"
+    node2.vm.box_version = "1.25.5"
     node2.vm.hostname = "node2.k8s"
-    node2.vm.network "public_network", ip: "192.168.1.132"
+    node2.vm.network "public_network", ip: "192.168.50.132"
     node2.vm.synced_folder "shared/", "/shared"
     node2.vm.provision "shell", path: "initial-config/add-hosts.sh"
     node2.vm.provision "shell", path: "initial-config/worker-setup.sh"
   end
 
   config.vm.define "node3" do |node3|
-    node3.vm.box = "merev/k8s-node"
-    node3.vm.box_version = "1.26.0"
+    node3.vm.box = "kubernetes-templates/k8s-node"
+    node3.vm.box_version = "1.25.5"
     node3.vm.hostname = "node3.k8s"
-    node3.vm.network "public_network", ip: "192.168.1.133"
+    node3.vm.network "public_network", ip: "192.168.50.133"
     node3.vm.synced_folder "shared/", "/shared"
     node3.vm.provision "shell", path: "initial-config/add-hosts.sh"
     node3.vm.provision "shell", path: "initial-config/worker-setup.sh"
